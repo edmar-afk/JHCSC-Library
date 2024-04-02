@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg {
+	background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.433)),
+		url("./assets/img/bannerImg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+.bg1 {
+	background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.433)),
+		url("./assets/img/admin.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+
