@@ -44,7 +44,7 @@ function Visitors() {
 				<p className="text-4xl font-bold mt-2">SITE VISITOR</p>
 
 				<div className="flex flex-row justify-evenly flex-wrap mt-14">
-					<div className="flex items-center p-4 bg-white relative rounded w-full max-w-[320px] mb-4">
+					<div className="flex items-center p-4 bg-white relative rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
 						<div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
 							<img
 								src={logo}
@@ -62,7 +62,7 @@ function Visitors() {
 						</div>
 					</div>
 
-					<div className="flex items-center p-4 bg-white rounded w-full max-w-[320px] mb-4">
+					<div className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
 						<div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
 							<img
 								src={logo}
@@ -81,12 +81,12 @@ function Visitors() {
 					</div>
 
 					<div
-						className={`flex items-center p-4 bg-white rounded relative w-full max-w-[320px] ${
+						className={`flex items-center p-4 bg-white rounded relative w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] ${
 							dateToggle ? "mb-16 sm:mb-0" : "mb-4"
 						}`}>
 						{dateToggle && (
 							<div className="absolute flex-col bottom-[-60px] left-0">
-								<div className="bg-green-800 flex justify-center p-2 rounded-lg text-white text-xs w-full max-w-[320px] flex-wrap">
+								<div className="bg-green-800 flex justify-center p-2 rounded-lg text-white text-xs w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] flex-wrap">
 									{dates.map((lists) => {
 										const { id, date } = lists;
 
@@ -124,7 +124,7 @@ function Visitors() {
 						</div>
 					</div>
 
-					<div className="flex items-center p-4 bg-white rounded w-full max-w-[320px] mb-4">
+					<div className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
 						<div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
 							<img
 								src={logo}

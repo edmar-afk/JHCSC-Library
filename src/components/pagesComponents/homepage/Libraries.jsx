@@ -72,10 +72,10 @@ function Libraries() {
 				</div>
 			</div>
 			<div className="bg-black/50 lg:p-4 text-white">
-				<div className="h-screen sm:h-[370px] xl:h-[400px] 2xl:h-[600px]">
+				<div className="h-screen sm:h-[640px] xl:h-[600px] 2xl:h-[600px]">
 					<Carousel>
 						<div className="flex flex-col justify-center items-center">
-							<p className="text-center text-yellow-400 mb-12 font-semibold text-xl sm:text-4xl">Main Library</p>
+							<p className="text-center text-yellow-400 mb-24 font-semibold text-xl sm:text-4xl mt-4">Main Library</p>
 							{mainCampus
 								.filter((list) => list.is_librarian_head)
 								.map(({ id, name, position }) => (
