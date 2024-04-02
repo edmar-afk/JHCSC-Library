@@ -10,23 +10,23 @@ function Libraries() {
 		const fetchLibrarians = async () => {
 			try {
 				//all librarians head
-				const response = await axios.get("http://127.0.0.1:8000/api/librarians/");
+				const response = await axios.get("https://libraryapi.pythonanywhere.com/api/librarians/");
 				setLibrarians(response.data);
 
 				//main campus librarians
-				const mainCampusResponse = await axios.get("http://127.0.0.1:8000/api/main/");
+				const mainCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/main/");
 				setMainCampus(mainCampusResponse.data);
 
 				//dumingag campus librarians
-				const dumingagCampusResponse = await axios.get("http://127.0.0.1:8000/api/dumingag/");
+				const dumingagCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/dumingag/");
 				setDumingagCampus(dumingagCampusResponse.data);
 
 				//pagadian campus librarians
-				const pagadianCampusResponse = await axios.get("http://127.0.0.1:8000/api/pagadian/");
+				const pagadianCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/pagadian/");
 				setPagadianCampus(pagadianCampusResponse.data);
 
 				//canuto campus librarians
-				const canutoCampusResponse = await axios.get("http://127.0.0.1:8000/api/canuto/");
+				const canutoCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/canuto/");
 				setCanutoCampus(canutoCampusResponse.data);
 			} catch (error) {
 				console.error("Error fetching librarians:", error);
