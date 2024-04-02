@@ -1,9 +1,4 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";
-function Libraries() {
-	const [librarians, setLibrarians] = useState([]);
-	const [mainCampus, setMainCampus] = useState([]);
-	const [dumingagCampus, setDumingagCampus] = useState([]);
-	const [pagadianCampus, setPagadianCampus] = useState([]);
+import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";function Libraries() {	const [librarians, setLibrarians] = useState([]);	const [mainCampus, setMainCampus] = useState([]);	const [dumingagCampus, setDumingagCampus] = useState([]);	const [pagadianCampus, setPagadianCampus] = useState([]);
 	const [canutoCampus, setCanutoCampus] = useState([]);
 
 	useEffect(() => {
@@ -52,7 +47,7 @@ function Libraries() {
 						.map(({ id, name, site, email, facebook_link }) => {
 							return (
 								<div
-									className="flex flex-col"
+									className="flex flex-col my-8"
 									key={id}>
 									<img
 										src={logo}
@@ -63,8 +58,17 @@ function Libraries() {
 									<p className="my-4 font-semibold text-lg">{site} Campus</p>
 									<ol className="list-disc ml-12">
 										<li>{name}</li>
-										<li className="text-yellow-600 font-bold">{email}</li>
-										<li className="text-yellow-600 font-bold">{facebook_link}</li>
+										<li className="font-bold">
+											<a href={`mailto:${email}?subject=Hello&body=Hello%20there,`} className="text-green-600">{email}</a>
+										</li>
+										<li>
+											<a
+												href={facebook_link}
+												target="_blank"
+												className="font-bold text-green-600">
+												Facebook Page
+											</a>
+										</li>
 									</ol>
 								</div>
 							);
