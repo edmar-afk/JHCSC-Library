@@ -76,7 +76,7 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 				</div>
 			</div>
 			<div className="bg-black/50 lg:p-4 text-white">
-				<div className="h-screen sm:h-[640px] xl:h-[600px] 2xl:h-[600px]">
+				<div className="h-screen sm:h-[640px] md:h-[710px] xl:h-[600px] 2xl:h-[600px]">
 					<Carousel>
 						<div className="flex flex-col justify-center items-center">
 							<p className="text-center text-yellow-400 mb-24 font-semibold text-xl sm:text-4xl mt-4">Main Library</p>
@@ -84,7 +84,7 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 								.filter((list) => list.is_librarian_head)
 								.map(({ id, name, position }) => (
 									<div
-										className="flex flex-col items-center"
+										className="flex flex-col justify-center items-center"
 										key={id}>
 										<img
 											src={logo}
@@ -95,7 +95,7 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 										<p>{position}</p>
 									</div>
 								))}
-							<div className="flex flex-col md:flex-row justify-between mt-8 flex-wrap">
+							<div className="flex flex-col md:flex-row justify-center mt-8 flex-wrap">
 								{mainCampus
 									.filter((list) => !list.is_librarian_head)
 									.map(({ id, name, position }) => (

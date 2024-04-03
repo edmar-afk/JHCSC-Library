@@ -1,7 +1,12 @@
-import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import logo from "../assets/img/logo.png";import { faEllipsis, faMinus } from "@fortawesome/free-solid-svg-icons";import { useState } from "react";function Chat() {
+import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../assets/img/logo.png";
+import { faEllipsis, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+function Chat() {
 	const [ellipsesHover, setEllpsesHover] = useState(false);
 	const [chatModal, setChatModal] = useState(false);
-	const [startChat, setStartChat] = useState(false)
+	const [startChat, setStartChat] = useState(false);
 	return (
 		<>
 			<div

@@ -1,6 +1,4 @@
-import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 function Contact() {
 	return (
 		<>
@@ -20,7 +18,7 @@ function Contact() {
 						loading="lazy"
 						referrerPolicy="no-referrer-when-downgrade"></iframe>
 
-					<div className="flex flex-row justify-start lg:justify-between mt-4 sm:mt-12  flex-wrap">
+					<div className="flex flex-col lg:flex-row justify-start lg:justify-between mt-4 sm:mt-12 flex-wrap">
 						<div className="flex flex-col">
 							<div className="flex items-center my-4">
 								<FontAwesomeIcon

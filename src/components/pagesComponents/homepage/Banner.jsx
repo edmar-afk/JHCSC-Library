@@ -3,7 +3,7 @@ import { faCalendarDays, faDatabase } from "@fortawesome/free-solid-svg-icons";
 function Banner() {
 	return (
 		<>
-			<div className="w-full h-screen bg">
+			<div className="w-full h-full md:h-screen bg">
 				<div className="flex flex-col justify-center items-center">
 					<div className="mb-24 mt-40 md:mt-56 text-center">
 						<p className="text-white text-3xl md:text-6xl font-bold">JHCSC Library</p>

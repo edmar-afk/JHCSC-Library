@@ -15,7 +15,7 @@ function OpacSearch() {
 	const formattedDateTime = currentDateTime.toLocaleString();
 	return (
 		<>
-			<div className="py-24 bg-white w-full">
+			<div className="py-24 bg-white w-full overflow-x-hidden">
 				<div className="mx-4 lg:mx-32">
 					<p className="text-center md:text-left text-sm md:text-xl text-gray-500">OPAC Search</p>
 
@@ -61,7 +61,7 @@ function OpacSearch() {
 						<img
 							src={libraryBuilding}
 							alt=""
-							className="w-[100%] sm:w-[70%]"
+							className="w-[100%] sm:w-[60%]"
 						/>
 						<div className="flex flex-row md:flex-col ml-0 md:ml-8 flex-wrap justify-evenly">
 							<div className="flex flex-row py-5">
