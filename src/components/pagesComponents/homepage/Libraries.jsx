@@ -1,9 +1,4 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";function Libraries() {	const [librarians, setLibrarians] = useState([]);	const [mainCampus, setMainCampus] = useState([]);	const [dumingagCampus, setDumingagCampus] = useState([]);	const [pagadianCampus, setPagadianCampus] = useState([]);
-	const [canutoCampus, setCanutoCampus] = useState([]);
-
-	useEffect(() => {
-		const fetchLibrarians = async () => {
-			try {
+import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";function Libraries() {	const [librarians, setLibrarians] = useState([]);	const [mainCampus, setMainCampus] = useState([]);	const [dumingagCampus, setDumingagCampus] = useState([]);	const [pagadianCampus, setPagadianCampus] = useState([]);	const [canutoCampus, setCanutoCampus] = useState([]);	useEffect(() => {		const fetchLibrarians = async () => {			try {
 				//all librarians head
 				const response = await axios.get("https://libraryapi.pythonanywhere.com/api/librarians/");
 				setLibrarians(response.data);
@@ -59,7 +54,11 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 									<ol className="list-disc ml-12">
 										<li>{name}</li>
 										<li className="font-bold">
-											<a href={`mailto:${email}?subject=Hello&body=Hello%20there,`} className="text-green-600">{email}</a>
+											<a
+												href={`mailto:${email}?subject=Hello&body=Hello%20there,`}
+												className="text-green-600">
+												{email}
+											</a>
 										</li>
 										<li>
 											<a
@@ -82,13 +81,13 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 							<p className="text-center text-yellow-400 mb-24 font-semibold text-xl sm:text-4xl mt-4">Main Library</p>
 							{mainCampus
 								.filter((list) => list.is_librarian_head)
-								.map(({ id, name, position }) => (
+								.map(({ id, name, position, user_image }) => (
 									<div
 										className="flex flex-col justify-center items-center"
 										key={id}>
 										<img
-											src={logo}
-											className="w-12 sm:w-24"
+											src={user_image}
+											className="w-12 sm:w-24 rounded-full"
 											alt=""
 										/>
 										<p className="text-lg font-bold">{name}</p>
@@ -98,13 +97,13 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 							<div className="flex flex-col md:flex-row justify-center mt-8 flex-wrap">
 								{mainCampus
 									.filter((list) => !list.is_librarian_head)
-									.map(({ id, name, position }) => (
+									.map(({ id, name, position, user_image }) => (
 										<div
 											className="flex flex-col items-center mx-12 my-2"
 											key={id}>
 											<img
-												src={logo}
-												className="w-12 sm:w-24"
+												src={user_image}
+												className="w-4 h-24 sm:w-24 rounded-full"
 												alt=""
 											/>
 											<p className="text-sm sm:text-lg font-bold">{name}</p>
@@ -118,13 +117,13 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 							<p className="text-center text-yellow-400 mb-12 font-semibold text-xl sm:text-4xl">Dumingag Library</p>
 							{dumingagCampus
 								.filter((list) => list.is_librarian_head)
-								.map(({ id, name, position }) => (
+								.map(({ id, name, position, user_image }) => (
 									<div
 										className="flex flex-col items-center"
 										key={id}>
 										<img
-											src={logo}
-											className="w-12 sm:w-24"
+											src={user_image}
+											className="w-12 sm:w-24 rounded-full"
 											alt=""
 										/>
 										<p className="text-lg font-bold">{name}</p>
@@ -134,13 +133,13 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 							<div className="flex flex-col md:flex-row justify-between mt-8 flex-wrap">
 								{dumingagCampus
 									.filter((list) => !list.is_librarian_head)
-									.map(({ id, name, position }) => (
+									.map(({ id, name, position, user_image }) => (
 										<div
 											className="flex flex-col items-center mx-12 my-2"
 											key={id}>
 											<img
-												src={logo}
-												className="w-12 sm:w-24"
+												src={user_image}
+												className="w-4 h-24 sm:w-24 rounded-full"
 												alt=""
 											/>
 											<p className="text-sm sm:text-lg font-bold">{name}</p>
@@ -154,13 +153,13 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 							<p className="text-center text-yellow-400 mb-12 font-semibold text-xl sm:text-4xl">Pagadian Library</p>
 							{pagadianCampus
 								.filter((list) => list.is_librarian_head)
-								.map(({ id, name, position }) => (
+								.map(({ id, name, position, user_image }) => (
 									<div
 										className="flex flex-col items-center"
 										key={id}>
 										<img
-											src={logo}
-											className="w-12 sm:w-24"
+											src={user_image}
+											className="w-12 sm:w-24 rounded-full"
 											alt=""
 										/>
 										<p className="text-lg font-bold">{name}</p>
@@ -176,7 +175,7 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 											key={id}>
 											<img
 												src={logo}
-												className="w-12 sm:w-24"
+												className="w-12 sm:w-24 rounded-full"
 												alt=""
 											/>
 											<p className="text-sm sm:text-lg font-bold">{name}</p>
@@ -187,7 +186,9 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 						</div>
 
 						<div className="flex flex-col justify-center items-center">
-							<p className="text-center text-yellow-400 mb-12 font-semibold text-xl sm:text-4xl">Canuto MS Enerio Library</p>
+							<p className="text-center text-yellow-400 mb-12 font-semibold text-xl sm:text-4xl">
+								Canuto MS Enerio Library
+							</p>
 							{canutoCampus
 								.filter((list) => list.is_librarian_head)
 								.map(({ id, name, position }) => (
@@ -212,7 +213,7 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 											key={id}>
 											<img
 												src={logo}
-												className="w-12 sm:w-24"
+												className="w-12 sm:w-24 rounded-full"
 												alt=""
 											/>
 											<p className="text-sm sm:text-lg font-bold">{name}</p>

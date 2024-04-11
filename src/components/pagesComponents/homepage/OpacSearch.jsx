@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";
 import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 function OpacSearch() {
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
+	const [searchValue, setSearchValue] = useState("");
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentDateTime(new Date());
@@ -13,13 +13,18 @@ function OpacSearch() {
 	}, []);
 
 	const formattedDateTime = currentDateTime.toLocaleString();
+
+	const handleInputChange = (event) => {
+		setSearchValue(event.target.value);
+	};
+
 	return (
 		<>
 			<div className="py-24 bg-white w-full overflow-x-hidden">
 				<div className="mx-4 lg:mx-32">
 					<p className="text-center md:text-left text-sm md:text-xl text-gray-500">OPAC Search</p>
 
-					<form className="flex items-center mx-auto mt-4">
+					<div className="flex items-center mx-auto mt-4">
 						<label
 							htmlFor="voice-search"
 							className="sr-only">
@@ -32,11 +37,19 @@ function OpacSearch() {
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full ps-4 p-2.5 placeholder-gray-400"
 								placeholder="Search"
 								required
+								onChange={handleInputChange}
+								value={searchValue} // Set the input value to the state variable
 							/>
 						</div>
-						<button
-							type="submit"
-							className="inline-flex items-center py-2.5 px-3 ms-2 text-xs md:text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+						<a
+							onClick={searchValue ? null : (e) => e.preventDefault()}
+							target="_blank"
+							href={`https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-search.pl?idx=&q=${searchValue}&branch_group_limit=&weight_search=1`}
+							className={`inline-flex items-center py-2.5 px-3 ms-2 text-xs md:text-sm font-medium text-white ${
+								searchValue
+									? "bg-green-700 border-green-700 hover:bg-green-800"
+									: "bg-red-700 border-red-700 hover:bg-red-800 cursor-not-allowed"
+							}  rounded-lg border duration-300`}>
 							<svg
 								className="w-4 h-4 me-0 md:me-2"
 								aria-hidden="true"
@@ -52,8 +65,8 @@ function OpacSearch() {
 								/>
 							</svg>
 							<p className="hidden md:block">Search</p>
-						</button>
-					</form>
+						</a>
+					</div>
 
 					<p className="text-center underline mt-2 cursor-pointer mb-14">Advanced Search</p>
 
