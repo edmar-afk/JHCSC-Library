@@ -1,9 +1,19 @@
 import gale from "../../assets/img/gale.jpg";import pej from "../../assets/img/pej.jpg";
 import pq from "../../assets/img/pq.png";
+import { useRef, useEffect } from "react";
 function Databases() {
+	const targetRef = useRef(null);
+
+	useEffect(() => {
+		if (targetRef.current) {
+			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
-			<div className="bg-white py-4 lg:py-24 w-full">
+			<div
+				ref={targetRef}
+				className="bg-white py-4 lg:py-24 w-full">
 				<div className="mx-4 lg:mx-32">
 					<div className="flex items-center">
 						<p className="text-gray-400 font-semibold text-sm tracking-wide">Databases</p>

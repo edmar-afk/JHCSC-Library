@@ -1,7 +1,15 @@
+import { useRef, useEffect } from "react";
 function Referrals() {
+	const targetRef = useRef(null);
+
+	useEffect(() => {
+		if (targetRef.current) {
+			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
-			<div className="bg-white w-full">
+			<div ref={targetRef} className="bg-white w-full">
 				<div className="p-24">
 					<p className="text-green-400 font-bold text-xl">Referral</p>
 					<ol>

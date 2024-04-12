@@ -1,7 +1,12 @@
-import { Dropdown } from "flowbite-react";
-import { Link } from "react-router-dom";
-
+import { Dropdown } from "flowbite-react";import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
 function NavLinks() {
+	const contentRef = useRef(null);
+
+	useEffect(() => {
+		// Scroll to bottom when component mounts (initial render)
+		contentRef.current.scrollTo({ top: contentRef.current.scrollHeight });
+	}, []);
 	return (
 		<>
 			<Link
@@ -10,7 +15,9 @@ function NavLinks() {
 				Home
 			</Link>
 
-			<div className="text-white hover:bg-yellow-400 rounded-md px-3 py-2 bg-transparent font-light">
+			<div
+				ref={contentRef}
+				className="text-white hover:bg-yellow-400 rounded-md px-3 py-2 bg-transparent font-light">
 				<Dropdown
 					label="About"
 					inline>

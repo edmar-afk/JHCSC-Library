@@ -1,4 +1,11 @@
-import logo from "../assets/img/logo.png";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import { useState, useEffect } from "react";import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";import NavLinks from "./NavLinks";function Navbar() {	const [scrollPosition, setScrollPosition] = useState(0);	const [showNav, setShowNav] = useState(false);
+import logo from "../assets/img/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useEffect } from "react";
+import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
+import NavLinks from "./NavLinks";
+function Navbar() {
+	const [scrollPosition, setScrollPosition] = useState(0);
+	const [showNav, setShowNav] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -63,7 +70,9 @@ import logo from "../assets/img/logo.png";import { FontAwesomeIcon } from "@fort
 					</div>
 				</div>
 			</nav>
-			<div onClick={()=>setShowNav(!showNav)} className={`bg-gray-700/20 w-full h-full fixed left-0 bottom-0 ${showNav ? 'block':' hidden'}`}></div>
+			<div
+				onClick={() => setShowNav(!showNav)}
+				className={`bg-gray-700/20 w-full h-full fixed left-0 bottom-0 ${showNav ? "block" : " hidden"}`}></div>
 		</>
 	);
 }

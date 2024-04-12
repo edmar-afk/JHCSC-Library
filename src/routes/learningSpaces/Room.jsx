@@ -1,6 +1,11 @@
-/* eslint-disable react/no-unescaped-entities */ import { useState, useEffect } from "react";function Room() {
+/* eslint-disable react/no-unescaped-entities */ import { useRef, useState, useEffect } from "react";function Room() {
+	const targetRef = useRef(null);
 	const [currentTime, setCurrentTime] = useState(new Date());
+
 	useEffect(() => {
+		if (targetRef.current) {
+			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
 		const interval = setInterval(() => {
 			setCurrentTime(new Date());
 		}, 1000);
@@ -23,7 +28,9 @@
 
 	return (
 		<>
-			<div className="bg-white py-4 lg:py-24 w-full">
+			<div
+				ref={targetRef}
+				className="bg-white py-4 lg:py-24 w-full">
 				<div className="mx-4 lg:mx-32">
 					<div className="flex items-center">
 						<p className="text-gray-400 font-semibold text-sm tracking-wide">ROOM</p>

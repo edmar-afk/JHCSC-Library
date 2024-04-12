@@ -1,8 +1,17 @@
-import admin from "../../assets/img/admin.jpg";
+import admin from "../../assets/img/admin.jpg";import { useRef, useEffect } from "react";
 function Barrowing() {
+	const targetRef = useRef(null);
+
+	useEffect(() => {
+		if (targetRef.current) {
+			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
-			<div className="bg-white py-16">
+			<div
+				ref={targetRef}
+				className="bg-white py-16">
 				<div className="mx-4 lg:mx-32 flex flex-row items-center justify-center flex-wrap lg:flex-nowrap">
 					<img
 						src={admin}

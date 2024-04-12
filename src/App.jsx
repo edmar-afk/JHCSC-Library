@@ -5,6 +5,7 @@ import Banner from './components/pagesComponents/homepage/Banner'
 import NavigateUp from "./components/NavigateUp";
 import Chat from "./components/Chat";
 function App() {
+	
 	return (
 		<>
 			<>
