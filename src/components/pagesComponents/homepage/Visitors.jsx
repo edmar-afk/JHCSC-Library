@@ -1,4 +1,8 @@
-/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import logo from "../../../assets/img/logo.png";import { faArrowDownShortWide } from "@fortawesome/free-solid-svg-icons";import { dates } from "../../../assets/data/links";import { useState, useEffect } from "react";import API_URL from "../../../assets/data/api";
+/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import logo from "../../../assets/img/logo.png";
+import { faArrowDownShortWide, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { dates } from "../../../assets/data/links";
+import { useState, useEffect } from "react";
+import API_URL from "../../../assets/data/api";
 import axios from "axios";
 function Visitors() {
 	const currentMonth = new Date().toLocaleString("default", { month: "short" });
@@ -8,7 +12,6 @@ function Visitors() {
 	const currentMonthWithLeadingZero = currentDate.toLocaleString("default", { month: "2-digit" });
 	const currentDayWithLeadingZero = currentDate.toLocaleString("default", { day: "2-digit" });
 
-
 	const [dateToggle, setDateToggle] = useState(false);
 	const [inputDate, setInputDate] = useState(currentMonth);
 	const [dateCount, setDateCount] = useState(0);
@@ -17,7 +20,7 @@ function Visitors() {
 	const [daily, setDaily] = useState();
 
 	const [totalViews, setTotalViews] = useState(0);
-
+	const [isLoading, setIsLoading] = useState(false); // State for loading spinner
 	const handleButtonClick = (date, id) => {
 		setInputDate(date);
 		setViewsMonth(id);
@@ -26,6 +29,8 @@ function Visitors() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+				setIsLoading(true); // Set loading to true before fetching data
+
 				const total = await axios.get(`${API_URL}api/visits/`);
 				const totalCount = total.data.length;
 				setTotalViews(totalCount);
@@ -43,8 +48,11 @@ function Visitors() {
 				const yearly = await axios.get(`${API_URL}api/views/year/${currentYear}/`);
 				const yearCount = yearly.data.length;
 				setYearViewsCount(yearCount);
+
+				setIsLoading(false); // Set loading to false after fetching data
 			} catch (error) {
 				console.error("Error fetching data:", error);
+				setIsLoading(false); // Set loading to false in case of error
 			}
 		};
 
@@ -131,7 +139,9 @@ function Visitors() {
 						<div className="flex-grow flex flex-col ml-4 text-gray-700">
 							<span className="text-xl font-bold">Monthly Visit</span>
 							<div className="flex items-center justify-between">
-								<span className="text-gray-500">{dateCount}</span>
+								<span className="text-gray-500">
+									{isLoading ? <FontAwesomeIcon icon={faSpinner} className="animate-spin"/> : <p> {dateCount}</p>}
+								</span>
 								<div
 									onClick={() => setDateToggle(!dateToggle)}
 									className="text-green-500 text-sm font-semibold ml-2 hover:text-gray-800 cursor-pointer hover:scale-110 duration-300">
