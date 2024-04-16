@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */ import {	faArrowAltCircleLeft,	faArrowAltCircleRight,} from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import {	add,	eachDayOfInterval,
-	endOfMonth,
-	format,
+/* eslint-disable react/prop-types */ import {	faArrowAltCircleLeft,	faArrowAltCircleRight,} from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import {	add,	eachDayOfInterval,	endOfMonth,	format,
 	getDay,
 	isEqual,
 	isSameDay,
@@ -15,35 +13,35 @@ import { useState } from "react";
 const meetings = [
 	{
 		id: 1,
-		name: "",
+		name: "Capstone defend for BSIT",
 		imageUrl: "https://t3.ftcdn.net/jpg/01/38/48/40/360_F_138484065_1enzXuW8NlkppNxSv4hVUrYoeF8qgoeY.jpg",
 		startDatetime: "2024-04-11T13:00",
 		endDatetime: "2024-05-11T14:30",
 	},
 	{
 		id: 2,
-		name: "Michael Foster",
+		name: "",
 		imageUrl: "https://t3.ftcdn.net/jpg/01/38/48/40/360_F_138484065_1enzXuW8NlkppNxSv4hVUrYoeF8qgoeY.jpg",
 		startDatetime: "2024-05-20T09:00",
 		endDatetime: "2024-05-20T11:30",
 	},
 	{
 		id: 3,
-		name: "Dries Vincent",
+		name: "",
 		imageUrl: "https://t3.ftcdn.net/jpg/01/38/48/40/360_F_138484065_1enzXuW8NlkppNxSv4hVUrYoeF8qgoeY.jpg",
 		startDatetime: "2024-05-20T17:00",
 		endDatetime: "2024-05-20T18:30",
 	},
 	{
 		id: 4,
-		name: "Leslie Alexander",
+		name: "",
 		imageUrl: "https://t3.ftcdn.net/jpg/01/38/48/40/360_F_138484065_1enzXuW8NlkppNxSv4hVUrYoeF8qgoeY.jpg",
 		startDatetime: "2024-06-09T13:00",
 		endDatetime: "2024-06-09T14:30",
 	},
 	{
 		id: 5,
-		name: "Michael Foster",
+		name: "",
 		imageUrl: "https://t3.ftcdn.net/jpg/01/38/48/40/360_F_138484065_1enzXuW8NlkppNxSv4hVUrYoeF8qgoeY.jpg",
 		startDatetime: "2024-05-13T14:00",
 		endDatetime: "2024-05-13T14:30",
@@ -189,11 +187,11 @@ function Meeting({ meeting }) {
 				alt=""
 				className="flex-none w-full"
 			/>
-			<div className="flex">
+			<div className="flex flex-col font-bold text-xl mt-4  items-center">
 				<div>
-					<p className="text-gray-900">{meeting.name}</p>
+					<p className="text-green-900">{meeting.name}</p>
 				</div>
-				<div className="font-bold text-xl mt-4">
+				<div className="flex flex-row">
 					<time dateTime={meeting.startDatetime}>{format(startDateTime, "h:mm a")}</time> -{" "}
 					<time dateTime={meeting.endDatetime}>{format(endDateTime, "h:mm a")}</time>
 				</div>
