@@ -1,5 +1,4 @@
-import logo from "../assets/img/logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../assets/img/logo.png";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import NavLinks from "./NavLinks";

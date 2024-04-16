@@ -1,11 +1,10 @@
-import { Button, Modal } from "flowbite-react";import { useState } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import events from "../../../assets/data/events";
+import { Button, Modal } from "flowbite-react";
+import { useState } from "react";
+import Example from "./Example";
+
+
 function BookingModal() {
 	const [openModal, setOpenModal] = useState(false);
-	const localizer = momentLocalizer(moment); // or globalizeLocalizer
 	return (
 		<>
 			<p
@@ -21,12 +20,7 @@ function BookingModal() {
 				<Modal.Header>Book a Schedule</Modal.Header>
 				<Modal.Body>
 					<div className="space-y-6">
-						<Calendar
-							localizer={localizer}
-							events={events}
-							startAccessor="start"
-							endAccessor="end"
-						/>
+						<Example/>
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
