@@ -19,7 +19,7 @@ function BookingModal() {
 				onClose={() => setOpenModal(false)}>
 				<Modal.Header>Book a Schedule</Modal.Header>
 				<Modal.Body>
-					<div className="space-y-6">
+					<div className="">
 						<Example/>
 					</div>
 				</Modal.Body>
