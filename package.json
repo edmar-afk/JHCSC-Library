@@ -22,8 +22,10 @@
     "preline": "^2.0.3",
     "react": "^18.2.0",
     "react-axios": "^2.0.6",
+    "react-big-calendar": "^1.11.6",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
+    "react-scheduler": "^0.1.0",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {

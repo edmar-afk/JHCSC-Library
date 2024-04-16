@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import NavLinks from "./NavLinks";
+import BookingModal from "./pagesComponents/homepage/BookingModal";
 function Navbar() {
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [showNav, setShowNav] = useState(false);
@@ -42,7 +43,9 @@ function Navbar() {
 							</div>
 						</div>
 						<div className="flex flex-shrink-0 items-center">
-							<p className="p-1.5 border-2 border-yellow-400 text-white px-6">Get Started</p>
+							<div className="p-1.5 relative border-2 border-yellow-400 text-white px-6 hover:cursor-pointer hover:bg-yellow-400 duration-300">
+								<BookingModal />
+							</div>
 							{showNav ? (
 								<FontAwesomeIcon
 									onClick={() => setShowNav(!showNav)}

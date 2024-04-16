@@ -1,16 +1,45 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";
-import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
+import axios from "axios";
+import API_URL from "../../../assets/data/api";
 function OpacSearch() {
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
 	const [searchValue, setSearchValue] = useState("");
+	const [views, setViews] = useState([]);
+	const [daily, setDaily] = useState();
+
+	const currentYear = new Date().getFullYear();
+	const currentDate = new Date();
+	const currentMonthWithLeadingZero = currentDate.toLocaleString("default", { month: "2-digit" });
+	const currentDayWithLeadingZero = currentDate.toLocaleString("default", { day: "2-digit" });
+
 	useEffect(() => {
+		const fetchData = async () => {
+			// setIsLoading(true); // Set loading to true before the fetch
+			try {
+				const visit = await axios.get(`${API_URL}/api/visits/`);
+				setViews(visit.data.length);
+
+				const daily = await axios.get(
+					`${API_URL}api/views/daily/${currentYear}/${currentMonthWithLeadingZero}/${currentDayWithLeadingZero}`
+				);
+				const dailyCount = daily.data.length;
+				setDaily(dailyCount);
+			} catch (error) {
+				console.error("Error fetching data:", error.response);
+			} finally {
+				// setIsLoading(false); // Set loading to false after fetch (regardless of success/error)
+			}
+		};
+
+		fetchData();
+
 		const interval = setInterval(() => {
 			setCurrentDateTime(new Date());
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [currentYear, currentMonthWithLeadingZero, currentDayWithLeadingZero]);
 
 	const formattedDateTime = currentDateTime.toLocaleString();
 
@@ -68,7 +97,9 @@ function OpacSearch() {
 						</a>
 					</div>
 
-					<p className="text-center underline mt-2 cursor-pointer mb-14">Advanced Search</p>
+					<a href="https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-search.pl" target="_blank">
+						<p className="text-center underline mt-2 cursor-pointer mb-14">Advanced Search</p>
+					</a>
 
 					<div className="flex flex-row justify-center flex-wrap md:flex-nowrap">
 						<img
@@ -108,8 +139,12 @@ function OpacSearch() {
 								<div className="flex flex-col ml-2 md:ml-4 text-gray-400">
 									<p className="font-bold text-sm md:text-xl text-gray-600">Visitors</p>
 									<div className="flex mt-2">
-										<p className="bg-red-400 p-[2px] px-2 rounded-md mx-1 text-white text-xs font-bold">Today: 0</p>
-										<p className="bg-green-800 p-[2px] px-2 rounded-md mx-1 text-white text-xs font-bold">Total: 0</p>
+										<p className="bg-red-400 p-[2px] px-2 rounded-md mx-1 text-white text-xs font-bold">
+											Today: {daily}
+										</p>
+										<p className="bg-green-800 p-[2px] px-2 rounded-md mx-1 text-white text-xs font-bold">
+											Total: {views}
+										</p>
 									</div>
 								</div>
 							</div>

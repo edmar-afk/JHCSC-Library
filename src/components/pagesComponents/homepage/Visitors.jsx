@@ -1,39 +1,56 @@
-/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from "../../../assets/img/logo.png";
-import { faArrowDownShortWide } from "@fortawesome/free-solid-svg-icons";
-import { dates } from "../../../assets/data/links";
-import { useState, useEffect } from "react";
+/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import logo from "../../../assets/img/logo.png";import { faArrowDownShortWide } from "@fortawesome/free-solid-svg-icons";import { dates } from "../../../assets/data/links";import { useState, useEffect } from "react";import API_URL from "../../../assets/data/api";
 import axios from "axios";
 function Visitors() {
-	const [visitorCount, setVisitorCount] = useState(0);
+	const currentMonth = new Date().toLocaleString("default", { month: "short" });
+	const currentYear = new Date().getFullYear();
+	const currentDate = new Date();
+	const currentMonthNum = currentDate.getMonth() + 1;
+	const currentMonthWithLeadingZero = currentDate.toLocaleString("default", { month: "2-digit" });
+	const currentDayWithLeadingZero = currentDate.toLocaleString("default", { day: "2-digit" });
 
-	useEffect(() => {
-		const visitDate = localStorage.getItem("visitDate");
-		const currentDate = new Date().toISOString().slice(0, 10); // Get current date in yyyy-mm-dd format
-
-		// If the visit date is different from the current date, count the visit
-		if (visitDate !== currentDate) {
-			axios
-				.get("http://127.0.0.1:8000/api/visitor-views/")
-				.then((response) => {
-					setVisitorCount(response.data.count);
-					// Update local storage with the current date to indicate visit has been counted for the day
-					localStorage.setItem("visitDate", currentDate);
-				})
-				.catch((error) => {
-					console.error("Error fetching visitor count:", error);
-				});
-		}
-	}, []);
-
-	const currentMonth = new Date().toLocaleString("default", { month: "long" });
 
 	const [dateToggle, setDateToggle] = useState(false);
 	const [inputDate, setInputDate] = useState(currentMonth);
+	const [dateCount, setDateCount] = useState(0);
+	const [viewsMonth, setViewsMonth] = useState(currentMonthNum);
+	const [yearViewsCount, setYearViewsCount] = useState();
+	const [daily, setDaily] = useState();
 
-	const handleButtonClick = (date) => {
+	const [totalViews, setTotalViews] = useState(0);
+
+	const handleButtonClick = (date, id) => {
 		setInputDate(date);
+		setViewsMonth(id);
 	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const total = await axios.get(`${API_URL}api/visits/`);
+				const totalCount = total.data.length;
+				setTotalViews(totalCount);
+
+				const daily = await axios.get(
+					`${API_URL}api/views/daily/${currentYear}/${currentMonthWithLeadingZero}/${currentDayWithLeadingZero}`
+				);
+				const dailyCount = daily.data.length;
+				setDaily(dailyCount);
+
+				const monthly = await axios.get(`${API_URL}api/views/month/${viewsMonth}/`);
+				const monthCount = monthly.data.length;
+				setDateCount(monthCount);
+
+				const yearly = await axios.get(`${API_URL}api/views/year/${currentYear}/`);
+				const yearCount = yearly.data.length;
+				setYearViewsCount(yearCount);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+
+		fetchData();
+	}, [viewsMonth, currentYear, currentMonthWithLeadingZero, currentDayWithLeadingZero]); // Make sure to include month in the dependency array to re-fetch data when month changes
+
 	return (
 		<>
 			<div className="bg-black/50 p-4 lg:p-24 text-white w-full">
@@ -56,7 +73,7 @@ function Visitors() {
 						<div className="flex-grow flex flex-col ml-4 text-gray-700">
 							<span className="text-xl font-bold">Total Visit</span>
 							<div className="flex items-center justify-between">
-								<span className="text-gray-500">1234567</span>
+								<span className="text-gray-500">{totalViews}</span>
 								<div className="text-green-500 text-sm font-semibold ml-2">Overall</div>
 							</div>
 						</div>
@@ -74,7 +91,7 @@ function Visitors() {
 						<div className="flex-grow flex flex-col ml-4 text-gray-700">
 							<span className="text-xl font-bold">Today's Visit</span>
 							<div className="flex items-center justify-between">
-								<span className="text-gray-500">{visitorCount}</span>
+								<span className="text-gray-500">{daily}</span>
 								<div className="text-green-500 text-sm font-semibold ml-2">Monday</div>
 							</div>
 						</div>
@@ -92,7 +109,7 @@ function Visitors() {
 
 										return (
 											<button
-												onClick={() => handleButtonClick(date)}
+												onClick={() => handleButtonClick(date, id)}
 												className="px-2 hover:bg-green-400 hover:text-gray-800 hover:font-bold rounded-md duration-300 cursor-pointer"
 												key={id}>
 												{date}
@@ -114,7 +131,7 @@ function Visitors() {
 						<div className="flex-grow flex flex-col ml-4 text-gray-700">
 							<span className="text-xl font-bold">Monthly Visit</span>
 							<div className="flex items-center justify-between">
-								<span className="text-gray-500">1234567</span>
+								<span className="text-gray-500">{dateCount}</span>
 								<div
 									onClick={() => setDateToggle(!dateToggle)}
 									className="text-green-500 text-sm font-semibold ml-2 hover:text-gray-800 cursor-pointer hover:scale-110 duration-300">
@@ -136,7 +153,7 @@ function Visitors() {
 						<div className="flex-grow flex flex-col ml-4 text-gray-700">
 							<span className="text-xl font-bold">Yearly Visit</span>
 							<div className="flex items-center justify-between">
-								<span className="text-gray-500">1234567</span>
+								<span className="text-gray-500">{yearViewsCount}</span>
 								<div className="text-green-500 text-sm font-semibold ml-2">2024</div>
 							</div>
 						</div>

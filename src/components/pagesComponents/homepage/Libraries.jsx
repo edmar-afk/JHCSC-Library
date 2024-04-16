@@ -1,22 +1,36 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";function Libraries() {	const [librarians, setLibrarians] = useState([]);	const [mainCampus, setMainCampus] = useState([]);	const [dumingagCampus, setDumingagCampus] = useState([]);	const [pagadianCampus, setPagadianCampus] = useState([]);	const [canutoCampus, setCanutoCampus] = useState([]);	useEffect(() => {		const fetchLibrarians = async () => {			try {
+import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";import API_URL from "../../../assets/data/api";
+import mainLib from "../../../assets/img/libraries/mainLib.png";
+import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";
+import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";
+import canutoLib from "../../../assets/img/libraries/canutoLib.png";
+
+function Libraries() {
+	const [librarians, setLibrarians] = useState([]);
+	const [mainCampus, setMainCampus] = useState([]);
+	const [dumingagCampus, setDumingagCampus] = useState([]);
+	const [pagadianCampus, setPagadianCampus] = useState([]);
+	const [canutoCampus, setCanutoCampus] = useState([]);
+	useEffect(() => {
+		const fetchLibrarians = async () => {
+			try {
 				//all librarians head
-				const response = await axios.get("https://libraryapi.pythonanywhere.com/api/librarians/");
+				const response = await axios.get(`${API_URL}api/librarians/`);
 				setLibrarians(response.data);
 
 				//main campus librarians
-				const mainCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/main/");
+				const mainCampusResponse = await axios.get(`${API_URL}api/main/`);
 				setMainCampus(mainCampusResponse.data);
 
 				//dumingag campus librarians
-				const dumingagCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/dumingag/");
+				const dumingagCampusResponse = await axios.get(`${API_URL}api/dumingag/`);
 				setDumingagCampus(dumingagCampusResponse.data);
 
 				//pagadian campus librarians
-				const pagadianCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/pagadian/");
+				const pagadianCampusResponse = await axios.get(`${API_URL}api/pagadian/`);
 				setPagadianCampus(pagadianCampusResponse.data);
 
 				//canuto campus librarians
-				const canutoCampusResponse = await axios.get("https://libraryapi.pythonanywhere.com/api/canuto/");
+				const canutoCampusResponse = await axios.get(`${API_URL}api/canuto/`);
 				setCanutoCampus(canutoCampusResponse.data);
 			} catch (error) {
 				console.error("Error fetching librarians:", error);
@@ -25,6 +39,13 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 
 		fetchLibrarians();
 	}, []);
+
+	const campuses = [
+		{ id: 1, campusName: "Main", img: mainLib },
+		{ id: 2, campusName: "Dumingag", img: dumingagLib },
+		{ id: 3, campusName: "Pagadian", img: pagadianLib },
+		{ id: 4, campusName: "Canuto", img: canutoLib },
+	];
 	return (
 		<>
 			<div className="bg-white py-4 lg:py-24 w-full">
@@ -40,14 +61,17 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 					{librarians
 						.filter((list) => list.is_librarian_head)
 						.map(({ id, name, site, email, facebook_link }) => {
+							const campus = campuses.find((campus) => campus.campusName === site);
+							if (!campus) return null; // handle the case where campus image is not found
+
 							return (
 								<div
 									className="flex flex-col my-8"
 									key={id}>
 									<img
-										src={logo}
+										src={campus.img}
 										alt=""
-										className="w-24 h-24"
+										className="w-40 h-32"
 										draggable="false"
 									/>
 									<p className="my-4 font-semibold text-lg">{site} Campus</p>
@@ -64,6 +88,7 @@ import { useState, useEffect } from "react";import axios from "axios";import { C
 											<a
 												href={facebook_link}
 												target="_blank"
+												rel="noopener noreferrer"
 												className="font-bold text-green-600">
 												Facebook Page
 											</a>
