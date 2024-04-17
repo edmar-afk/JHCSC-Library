@@ -1,4 +1,8 @@
-import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import { faFacebook } from "@fortawesome/free-brands-svg-icons";import { motion, useAnimation } from "framer-motion";import { useInView } from "react-intersection-observer";
+import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 function Contact() {
 	const controls = useAnimation();
@@ -9,6 +13,7 @@ function Contact() {
 			controls.start("visible");
 		}
 	}, [controls, inView]);
+
 	return (
 		<>
 			<div className="bg-white py-24 w-full">

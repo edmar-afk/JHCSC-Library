@@ -25,6 +25,10 @@ const router = createBrowserRouter([
 				element: <Homepage />,
 			},
 			{
+				path: "/contact",
+				element: <Homepage />,
+			},
+			{
 				path: "/visionmission",
 				element: <VisionMission />,
 			},
@@ -53,17 +57,17 @@ const router = createBrowserRouter([
 				element: <VisitingUsers />,
 			},
 			{
-				path: '/policies',
-				element: <Policies/>
+				path: "/policies",
+				element: <Policies />,
 			},
 			{
-				path: '/databases',
-				element: <Databases/>
+				path: "/databases",
+				element: <Databases />,
 			},
 			{
-				path: '/room',
-				element:<Room/>
-			}
+				path: "/room",
+				element: <Room />,
+			},
 		],
 	},
 ]);

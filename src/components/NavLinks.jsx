@@ -1,12 +1,14 @@
-import { Dropdown } from "flowbite-react";import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
-function NavLinks() {
+import { Dropdown } from "flowbite-react";import { Link, useLocation } from "react-router-dom";import { useEffect, useRef } from "react";function NavLinks() {
 	const contentRef = useRef(null);
+	const location = useLocation();
 
 	useEffect(() => {
 		// Scroll to bottom when component mounts (initial render)
 		contentRef.current.scrollTo({ top: contentRef.current.scrollHeight });
-	}, []);
+		if (location.pathname === "/contact") {
+			window.scrollTo(0, document.body.scrollHeight);
+		}
+	}, [location.pathname]);
 	return (
 		<>
 			<Link
