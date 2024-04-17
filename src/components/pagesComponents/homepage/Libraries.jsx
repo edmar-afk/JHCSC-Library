@@ -1,8 +1,4 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";import API_URL from "../../../assets/data/api";
-import mainLib from "../../../assets/img/libraries/mainLib.png";
-import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";
-import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";
-import canutoLib from "../../../assets/img/libraries/canutoLib.png";
+import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";import API_URL from "../../../assets/data/api";import mainLib from "../../../assets/img/libraries/mainLib.png";import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";import canutoLib from "../../../assets/img/libraries/canutoLib.png";
 
 function Libraries() {
 	const [librarians, setLibrarians] = useState([]);
@@ -194,12 +190,12 @@ function Libraries() {
 							<div className="flex flex-col md:flex-row justify-between mt-8 flex-wrap">
 								{pagadianCampus
 									.filter((list) => !list.is_librarian_head)
-									.map(({ id, name, position }) => (
+									.map(({ id, name, position, user_image }) => (
 										<div
 											className="flex flex-col items-center mx-12 my-2"
 											key={id}>
 											<img
-												src={logo}
+												src={user_image}
 												className="w-12 sm:w-24 rounded-full"
 												alt=""
 											/>
@@ -216,12 +212,12 @@ function Libraries() {
 							</p>
 							{canutoCampus
 								.filter((list) => list.is_librarian_head)
-								.map(({ id, name, position }) => (
+								.map(({ id, name, position, user_image }) => (
 									<div
 										className="flex flex-col items-center"
 										key={id}>
 										<img
-											src={logo}
+											src={user_image}
 											className="w-12 sm:w-24"
 											alt=""
 										/>

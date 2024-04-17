@@ -62,24 +62,24 @@ function Contact() {
 									<div className="flex flex-row mb-6">
 										<input
 											type="text"
-											className="border-2 p-2 mr-2 w-full rounded-lg"
+											className="border-1 border-gray-200 p-2 mr-2 w-full rounded-lg"
 											placeholder="Your Name"
 										/>
 
 										<input
 											type="text"
-											className="border-2 p-2 ml-2 w-full rounded-lg"
+											className="border-1 border-gray-200 p-2 ml-2 w-full rounded-lg"
 											placeholder="Your Email"
 										/>
 									</div>
 									<input
 										type="text"
-										className="border-2 p-2 w-full rounded-lg mb-6"
+										className="border-1 border-gray-200 p-2 w-full rounded-lg mb-6"
 										placeholder="Your Name"
 									/>
 
 									<textarea
-										className="border-2 p-2 w-full h-32 rounded-lg mb-6"
+										className="border-1 border-gray-200 p-2 w-full h-32 rounded-lg mb-6"
 										placeholder="Message"
 									/>
 									<div className="flex justify-center">
