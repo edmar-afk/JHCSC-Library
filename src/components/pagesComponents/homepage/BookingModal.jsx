@@ -1,7 +1,6 @@
-import { Button, Modal } from "flowbite-react";
-import { useState } from "react";
+import { Button, Modal } from "flowbite-react";import { useState } from "react";
 import Example from "./Example";
-
+import Booking from "../../../assets/data/Booking.pdf";
 function BookingModal() {
 	const [openModal, setOpenModal] = useState(false);
 	return (
@@ -25,7 +24,7 @@ function BookingModal() {
 				<Modal.Footer>
 					<a
 						className="bg-green-400 px-4 py-2 rounded-xl font-semibold hover:bg-green-600 hover:scale-110 duration-200 hover:text-white"
-						href="https://docs.google.com/forms/d/e/1FAIpQLSfOfRl1sC2047hD9e6uSbBxTUkpovEL1SaffA1jLKGVyCjq1Q/viewform?pli=1"
+						href={Booking}
 						target="_blank">
 						Book
 					</a>

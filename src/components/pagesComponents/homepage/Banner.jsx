@@ -1,6 +1,6 @@
-/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faDatabase } from "@fortawesome/free-solid-svg-icons";
+/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import { faCalendarDays, faDatabase } from "@fortawesome/free-solid-svg-icons";
 import BookingModal from "./BookingModal";
+import Booking from '../../../assets/data/Booking.pdf'
 function Banner() {
 	return (
 		<>
@@ -16,7 +16,7 @@ function Banner() {
 					<div className="flex flex-row justify-center mb-32 md:mb-48 text-center flex-wrap">
 						<div className="bg-transparent relative hover:cursor-pointer p-4 md:p-8 border-[1px] w-full md:w-[200px] my-2 border-gray-200/30 mx-3 hover:border-yellow-300 text-white hover:text-yellow-300 duration-300">
 							<a
-								href="https://docs.google.com/forms/d/e/1FAIpQLSfOfRl1sC2047hD9e6uSbBxTUkpovEL1SaffA1jLKGVyCjq1Q/viewform?pli=1"
+								href={Booking}
 								target="_blank">
 								<div className="flex flex-col mx-2 my-4">
 									<FontAwesomeIcon

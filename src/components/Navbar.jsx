@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import NavLinks from "./NavLinks";
 import BookingModal from "./pagesComponents/homepage/BookingModal";
+
 function Navbar() {
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [showNav, setShowNav] = useState(false);
