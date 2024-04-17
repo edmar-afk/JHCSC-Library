@@ -32,7 +32,7 @@ function BookingModal() {
 					<Button
 						color="gray"
 						onClick={() => setOpenModal(false)}>
-						Decline
+						Close
 					</Button>
 				</Modal.Footer>
 			</Modal>
