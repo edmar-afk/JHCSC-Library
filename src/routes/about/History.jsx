@@ -1,20 +1,47 @@
 import { useRef, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 function History() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const targetRef = useRef(null);
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		if (targetRef.current) {
 			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
-	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
+	}, [controls, inView]); // Empty dependency array ensures this effect runs only once after the component mounts
 
 	return (
 		<>
 			<div
 				ref={targetRef}
 				className="p-4 sm:p-12 lg:p-32 bg-white">
-				<p className="text-green-600 font-bold text-2xl mb-4">History Of JHCSC</p>
-				<p className="text-justify">
+				<motion.p
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { opacity: 1, x: 0 },
+						hidden: { opacity: 0, x: 50 },
+					}}
+					transition={{ duration: 1 }}
+					className="text-green-600 font-bold text-2xl mb-4">
+					History Of JHCSC
+				</motion.p>
+				<motion.p
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { opacity: 1, x: 0 },
+						hidden: { opacity: 0, x: -50 },
+					}}
+					transition={{ duration: 1 }}
+					className="text-justify">
 					Sometime in 1983, the members of San Miguel Municipal Council and the community folks of Mati, San Miguel,
 					Zamboanga del Sur together with the Department of Education, Culture and Sports (DECS) officials strongly
 					supported the move of Assemblyman Vicente Madarang Cerilles for the creation of a barangay high school in
@@ -62,7 +89,7 @@ function History() {
 					Carlicita A. Saniel as President of JHCSC for the second term. Today, The College has 21 campuses located in
 					the different municipalities of Zamboanga del Sur. Its main campus is preparing for its Level 3 accreditation
 					with AACCUP.
-				</p>
+				</motion.p>
 			</div>
 		</>
 	);

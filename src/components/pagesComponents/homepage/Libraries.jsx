@@ -1,6 +1,16 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";import API_URL from "../../../assets/data/api";import mainLib from "../../../assets/img/libraries/mainLib.png";import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";import canutoLib from "../../../assets/img/libraries/canutoLib.png";
+import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";
+import logo from "../../../assets/img/logo.png";
+import API_URL from "../../../assets/data/api";
+import mainLib from "../../../assets/img/libraries/mainLib.png";
+import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";
+import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";
+import canutoLib from "../../../assets/img/libraries/canutoLib.png";
 
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 function Libraries() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const [librarians, setLibrarians] = useState([]);
 	const [mainCampus, setMainCampus] = useState([]);
 	const [dumingagCampus, setDumingagCampus] = useState([]);
@@ -8,6 +18,9 @@ function Libraries() {
 	const [canutoCampus, setCanutoCampus] = useState([]);
 	useEffect(() => {
 		const fetchLibrarians = async () => {
+			if (inView) {
+				controls.start("visible");
+			}
 			try {
 				//all librarians head
 				const response = await axios.get(`${API_URL}api/librarians/`);
@@ -34,7 +47,7 @@ function Libraries() {
 		};
 
 		fetchLibrarians();
-	}, []);
+	}, [ controls, inView]);
 
 	const campuses = [
 		{ id: 1, campusName: "Main", img: mainLib },
@@ -45,15 +58,33 @@ function Libraries() {
 	return (
 		<>
 			<div className="bg-white py-4 lg:py-24 w-full">
-				<div className="mx-4 lg:mx-32">
+				<motion.div
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { x: 0 },
+						hidden: { x: -50 },
+					}}
+					transition={{ duration: 1 }}
+					className="mx-4 lg:mx-32">
 					<div className="flex items-center">
 						<p className="text-gray-400 font-semibold text-sm tracking-wide">LIBRARIES</p>
 						<p className="text-yellow-300 ml-2 mb-4">__________________</p>
 					</div>
 					<p className="font-bold text-4xl">JHCSC LIBRARIES</p>
-				</div>
+				</motion.div>
 
-				<div className="flex flex-row flex-wrap justify-evenly mt-8">
+				<motion.div
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { x: 0 },
+						hidden: { x: 50 },
+					}}
+					transition={{ duration: 1 }}
+					className="flex flex-row flex-wrap justify-evenly mt-8">
 					{librarians
 						.filter((list) => list.is_librarian_head)
 						.map(({ id, name, site, email, facebook_link }) => {
@@ -93,7 +124,7 @@ function Libraries() {
 								</div>
 							);
 						})}
-				</div>
+				</motion.div>
 			</div>
 			<div className="bg-black/50 lg:p-4 text-white">
 				<div className="h-screen sm:h-[640px] md:h-[710px] xl:h-[600px] 2xl:h-[600px]">

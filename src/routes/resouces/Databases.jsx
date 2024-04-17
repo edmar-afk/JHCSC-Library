@@ -1,28 +1,62 @@
-import gale from "../../assets/img/gale.jpg";import pej from "../../assets/img/pej.jpg";
-import pq from "../../assets/img/pq.png";
-import { useRef, useEffect } from "react";
+import gale from "../../assets/img/gale.jpg";import pej from "../../assets/img/pej.jpg";import pq from "../../assets/img/pq.png";import { useRef, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 function Databases() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const targetRef = useRef(null);
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		if (targetRef.current) {
 			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
-	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
+	}, [controls, inView]); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
 			<div
 				ref={targetRef}
 				className="bg-white py-4 lg:py-24 w-full">
 				<div className="mx-4 lg:mx-32">
-					<div className="flex items-center">
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { opacity: 1, x: 0 },
+							hidden: { opacity: 0, x: -50 },
+						}}
+						transition={{ duration: 1 }}
+						className="flex items-center">
 						<p className="text-gray-400 font-semibold text-sm tracking-wide">Databases</p>
 						<p className="text-yellow-300 ml-2 mb-4">__________________</p>
-					</div>
-					<p className="font-bold text-4xl">JHCSC DATABASES</p>
+					</motion.div>
+					<motion.p
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { opacity: 1, x: 0 },
+							hidden: { opacity: 0, x: 50 },
+						}}
+						transition={{ duration: 1 }}
+						className="font-bold text-4xl">
+						JHCSC DATABASES
+					</motion.p>
 
 					<div className="flex flex-row justify-evenly mt-12 flex-wrap">
-						<div className="flex flex-col w-full max-w-[370px] my-16">
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, x: 0 },
+								hidden: { opacity: 0, x: -50 },
+							}}
+							transition={{ duration: 1 }}
+							className="flex flex-col w-full max-w-[370px] my-16">
 							<img
 								src={gale}
 								className="w-44"
@@ -40,9 +74,18 @@ function Databases() {
 								target="_blank">
 								https://link.gale.com/apps/
 							</a>
-						</div>
+						</motion.div>
 
-						<div className="flex flex-col w-full max-w-[370px] my-16">
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
+							}}
+							transition={{ duration: 1 }}
+							className="flex flex-col w-full max-w-[370px] my-16">
 							<img
 								src={pej}
 								className="w-24"
@@ -61,9 +104,18 @@ function Databases() {
 								target="_blank">
 								https://ejournals.ph/
 							</a>
-						</div>
+						</motion.div>
 
-						<div className="flex flex-col w-full max-w-[370px] my-16">
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, x: 0 },
+								hidden: { opacity: 0, x: 50 },
+							}}
+							transition={{ duration: 1 }}
+							className="flex flex-col w-full max-w-[370px] my-16">
 							<img
 								src={pq}
 								className="w-44"
@@ -77,7 +129,7 @@ function Databases() {
 								target="_blank">
 								https://www.proquest.com/
 							</a>
-						</div>
+						</motion.div>
 					</div>
 				</div>
 			</div>

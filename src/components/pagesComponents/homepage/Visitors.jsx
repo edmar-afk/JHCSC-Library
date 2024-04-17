@@ -1,10 +1,15 @@
-/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import logo from "../../../assets/img/logo.png";
+/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../../../assets/img/logo.png";
 import { faArrowDownShortWide, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { dates } from "../../../assets/data/links";
 import { useState, useEffect } from "react";
 import API_URL from "../../../assets/data/api";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import axios from "axios";
 function Visitors() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const currentMonth = new Date().toLocaleString("default", { month: "short" });
 	const currentYear = new Date().getFullYear();
 	const currentDate = new Date();
@@ -27,6 +32,9 @@ function Visitors() {
 	};
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		const fetchData = async () => {
 			try {
 				setIsLoading(true); // Set loading to true before fetching data
@@ -57,19 +65,48 @@ function Visitors() {
 		};
 
 		fetchData();
-	}, [viewsMonth, currentYear, currentMonthWithLeadingZero, currentDayWithLeadingZero]); // Make sure to include month in the dependency array to re-fetch data when month changes
+	}, [viewsMonth, currentYear, currentMonthWithLeadingZero, currentDayWithLeadingZero, controls, inView]); // Make sure to include month in the dependency array to re-fetch data when month changes
 
 	return (
 		<>
 			<div className="bg-black/50 p-4 lg:p-24 text-white w-full">
-				<div className="flex items-center">
+				<motion.div
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { x: 0 },
+						hidden: { x: -50 },
+					}}
+					transition={{ duration: 1 }}
+					className="flex items-center">
 					<p className="text-md font-semibold">VISITOR</p>
 					<span className="ml-4 text-yellow-200 text-xs">──────────────</span>
-				</div>
-				<p className="text-4xl font-bold mt-2">SITE VISITOR</p>
+				</motion.div>
+				<motion.p
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { x: 0 },
+						hidden: { x: 50 },
+					}}
+					transition={{ duration: 1 }}
+					className="text-4xl font-bold mt-2">
+					SITE VISITOR
+				</motion.p>
 
 				<div className="flex flex-row justify-evenly flex-wrap mt-14">
-					<div className="flex items-center p-4 bg-white relative rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { y: 0 },
+							hidden: { y: -20 },
+						}}
+						transition={{ duration: 1 }}
+						className="flex items-center p-4 bg-white relative rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
 						<div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
 							<img
 								src={logo}
@@ -85,9 +122,18 @@ function Visitors() {
 								<div className="text-green-500 text-sm font-semibold ml-2">Overall</div>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 
-					<div className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { y: 0 },
+							hidden: { y: -30 },
+						}}
+						transition={{ duration: 1 }}
+						className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
 						<div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
 							<img
 								src={logo}
@@ -103,9 +149,17 @@ function Visitors() {
 								<div className="text-green-500 text-sm font-semibold ml-2">Monday</div>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 
-					<div
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { y: 0 },
+							hidden: { y: -40 },
+						}}
+						transition={{ duration: 1 }}
 						className={`flex items-center p-4 bg-white rounded relative w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] ${
 							dateToggle ? "mb-16 sm:mb-0" : "mb-4"
 						}`}>
@@ -140,7 +194,14 @@ function Visitors() {
 							<span className="text-xl font-bold">Monthly Visit</span>
 							<div className="flex items-center justify-between">
 								<span className="text-gray-500">
-									{isLoading ? <FontAwesomeIcon icon={faSpinner} className="animate-spin"/> : <p> {dateCount}</p>}
+									{isLoading ? (
+										<FontAwesomeIcon
+											icon={faSpinner}
+											className="animate-spin"
+										/>
+									) : (
+										<p> {dateCount}</p>
+									)}
 								</span>
 								<div
 									onClick={() => setDateToggle(!dateToggle)}
@@ -149,9 +210,18 @@ function Visitors() {
 								</div>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 
-					<div className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { y: 0 },
+							hidden: { y: -50 },
+						}}
+						transition={{ duration: 1 }}
+						className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
 						<div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
 							<img
 								src={logo}
@@ -167,7 +237,7 @@ function Visitors() {
 								<div className="text-green-500 text-sm font-semibold ml-2">2024</div>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</>

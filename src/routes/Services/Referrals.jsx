@@ -1,16 +1,34 @@
 import { useRef, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 function Referrals() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const targetRef = useRef(null);
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		if (targetRef.current) {
 			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
-	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
+	}, [controls, inView]); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
-			<div ref={targetRef} className="bg-white w-full">
-				<div className="p-24">
+			<div
+				ref={targetRef}
+				className="bg-white w-full">
+				<motion.div
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { opacity: 1, x: 0 },
+						hidden: { opacity: 0, x: 50 },
+					}}
+					transition={{ duration: 1 }}
+					className="p-24">
 					<p className="text-green-400 font-bold text-xl">Referral</p>
 					<ol>
 						<li>
@@ -29,7 +47,7 @@ function Referrals() {
 							Client Satisfaction
 						</a>
 					</div>
-				</div>
+				</motion.div>
 			</div>
 		</>
 	);

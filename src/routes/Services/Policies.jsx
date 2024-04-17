@@ -1,18 +1,36 @@
 import policies from "../../assets/img/policies.png";
 import { useRef, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 function Policies() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const targetRef = useRef(null);
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		if (targetRef.current) {
 			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
-	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
+	}, [controls, inView]); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
-			<div ref={targetRef} className="bg-white py-16">
+			<div
+				ref={targetRef}
+				className="bg-white py-16">
 				<div className="mx-4 lg:mx-32 flex flex-row items-center justify-center flex-wrap lg:flex-nowrap">
-					<div className="flex-initial w-[90%] lg:w-[40%] mt-14 lg:mt-0">
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { opacity: 1, x: 0 },
+							hidden: { opacity: 0, x: 50 },
+						}}
+						transition={{ duration: 1 }}
+						className="flex-initial w-[90%] lg:w-[40%] mt-14 lg:mt-0">
 						<p className="text-green-600 font-bold text-2xl">Library Policies</p>
 						<p className="break-words mt-8 font-bold text-gray-700">Library Hours Policy</p>
 						<ol className="list-disc ml-8">
@@ -33,9 +51,17 @@ function Policies() {
 								the library is not held responsible for the information accuracy, authenticity, and recency.
 							</li>
 						</ol>
-					</div>
+					</motion.div>
 
-					<img
+					<motion.img
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
+						}}
+						transition={{ duration: 1 }}
 						src={policies}
 						alt="admin building"
 						className="w-full max-w-[650px] h-[200px] sm:h-[400px] mr-0 sm:mr-12"

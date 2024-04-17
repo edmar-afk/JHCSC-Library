@@ -1,17 +1,35 @@
 /* eslint-disable react/no-unescaped-entities */ import visit from "../../assets/img/visit.png";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { useRef, useEffect } from "react";
 function VisitingUsers() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const targetRef = useRef(null);
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		if (targetRef.current) {
 			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
-	}, []); // Empty dependency array ensures this effect runs only once after the component mounts
+	}, [controls, inView]); // Empty dependency array ensures this effect runs only once after the component mounts
 	return (
 		<>
-			<div ref={targetRef} className="bg-white py-16">
-				<div className="mx-4 lg:mx-32 flex flex-row items-center justify-center flex-wrap lg:flex-nowrap">
+			<div
+				ref={targetRef}
+				className="bg-white py-16">
+				<motion.div
+					ref={ref}
+					initial="hidden"
+					animate={controls}
+					variants={{
+						visible: { opacity: 1, x: 0 },
+						hidden: { opacity: 0, x: -50 },
+					}}
+					transition={{ duration: 1 }}
+					className="mx-4 lg:mx-32 flex flex-row items-center justify-center flex-wrap lg:flex-nowrap">
 					<img
 						src={visit}
 						alt="admin building"
@@ -28,7 +46,7 @@ function VisitingUsers() {
 							<li>Visitor/s is subject to the library's rules and regulations when using the library.</li>
 						</ol>
 					</div>
-				</div>
+				</motion.div>
 			</div>
 		</>
 	);

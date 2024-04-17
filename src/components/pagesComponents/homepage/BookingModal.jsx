@@ -1,6 +1,7 @@
 import { Button, Modal } from "flowbite-react";import { useState } from "react";
 import Example from "./Example";
 import Booking from "../../../assets/data/Booking.pdf";
+
 function BookingModal() {
 	const [openModal, setOpenModal] = useState(false);
 	return (

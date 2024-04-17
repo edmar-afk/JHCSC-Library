@@ -1,8 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";import { useState, useEffect } from "react";
 import axios from "axios";
 import API_URL from "../../../assets/data/api";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 function OpacSearch() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
 	const [searchValue, setSearchValue] = useState("");
 	const [views, setViews] = useState([]);
@@ -14,6 +17,9 @@ function OpacSearch() {
 	const currentDayWithLeadingZero = currentDate.toLocaleString("default", { day: "2-digit" });
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		const fetchData = async () => {
 			// setIsLoading(true); // Set loading to true before the fetch
 			try {
@@ -39,7 +45,7 @@ function OpacSearch() {
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, [currentYear, currentMonthWithLeadingZero, currentDayWithLeadingZero]);
+	}, [currentYear, currentMonthWithLeadingZero, currentDayWithLeadingZero, controls, inView]);
 
 	const formattedDateTime = currentDateTime.toLocaleString();
 
@@ -51,26 +57,56 @@ function OpacSearch() {
 		<>
 			<div className="py-24 bg-white w-full overflow-x-hidden">
 				<div className="mx-4 lg:mx-32">
-					<p className="text-center md:text-left text-sm md:text-xl text-gray-500">OPAC Search</p>
+					<motion.p
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { opacity: 1, x: 0 },
+							hidden: { opacity: 0, x: -50 },
+						}}
+						transition={{ duration: 2 }}
+						className="text-center md:text-left text-sm md:text-xl text-gray-500">
+						OPAC Search
+					</motion.p>
 
 					<div className="flex items-center mx-auto mt-4">
-						<label
-							htmlFor="voice-search"
-							className="sr-only">
-							Search
-						</label>
-						<div className="relative w-full">
-							<input
-								type="text"
-								id="voice-search"
-								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full ps-4 p-2.5 placeholder-gray-400"
-								placeholder="Search"
-								required
-								onChange={handleInputChange}
-								value={searchValue} // Set the input value to the state variable
-							/>
-						</div>
-						<a
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, y: 0 },
+								hidden: { opacity: 0, y: 50 },
+							}}
+							transition={{ duration: 2 }}
+							className=" w-full">
+							<label
+								htmlFor="voice-search"
+								className="sr-only">
+								Search
+							</label>
+							<div className="relative">
+								<input
+									type="text"
+									id="voice-search"
+									className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full ps-4 p-2.5 placeholder-gray-400"
+									placeholder="Search"
+									required
+									onChange={handleInputChange}
+									value={searchValue} // Set the input value to the state variable
+								/>
+							</div>
+						</motion.div>
+						<motion.a
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, x: 0 },
+								hidden: { opacity: 0, x: 30 },
+							}}
+							transition={{ duration: 2 }}
 							onClick={searchValue ? null : (e) => e.preventDefault()}
 							target="_blank"
 							href={`https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-search.pl?idx=&q=${searchValue}&branch_group_limit=&weight_search=1`}
@@ -94,20 +130,39 @@ function OpacSearch() {
 								/>
 							</svg>
 							<p className="hidden md:block">Search</p>
-						</a>
+						</motion.a>
 					</div>
 
-					<a href="https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-search.pl" target="_blank">
+					<a
+						href="https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-search.pl"
+						target="_blank">
 						<p className="text-center underline mt-2 cursor-pointer mb-14">Advanced Search</p>
 					</a>
 
 					<div className="flex flex-row justify-center flex-wrap md:flex-nowrap">
-						<img
+						<motion.img
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, x: 0 },
+								hidden: { opacity: 0, x: -50 },
+							}}
+							transition={{ duration: 1 }}
 							src={libraryBuilding}
 							alt=""
 							className="w-[100%] sm:w-[60%]"
 						/>
-						<div className="flex flex-row md:flex-col ml-0 md:ml-8 flex-wrap justify-evenly">
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { opacity: 1, x: 0 },
+								hidden: { opacity: 0, x: 50 },
+							}}
+							transition={{ duration: 1 }}
+							className="flex flex-row md:flex-col ml-0 md:ml-8 flex-wrap justify-evenly">
 							<div className="flex flex-row py-5">
 								<FontAwesomeIcon
 									icon={faClock}
@@ -175,7 +230,7 @@ function OpacSearch() {
 									</a>
 								</div>
 							</div>
-						</div>
+						</motion.div>
 					</div>
 				</div>
 			</div>

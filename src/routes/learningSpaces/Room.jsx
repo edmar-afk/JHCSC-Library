@@ -1,8 +1,16 @@
-/* eslint-disable react/no-unescaped-entities */ import { useRef, useState, useEffect } from "react";function Room() {
+/* eslint-disable react/no-unescaped-entities */ import { useRef, useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+function Room() {
+	const controls = useAnimation();
+	const [ref, inView] = useInView({ reset: true });
 	const targetRef = useRef(null);
 	const [currentTime, setCurrentTime] = useState(new Date());
 
 	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
 		if (targetRef.current) {
 			targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
@@ -10,7 +18,7 @@
 			setCurrentTime(new Date());
 		}, 1000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [controls, inView]);
 
 	const formatDate = (date) => {
 		const options = {
@@ -32,14 +40,43 @@
 				ref={targetRef}
 				className="bg-white py-4 lg:py-24 w-full">
 				<div className="mx-4 lg:mx-32">
-					<div className="flex items-center">
+					<motion.div
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { x: 0 },
+							hidden: { x: -50 },
+						}}
+						transition={{ duration: 1 }}
+						className="flex items-center">
 						<p className="text-gray-400 font-semibold text-sm tracking-wide">ROOM</p>
 						<p className="text-yellow-300 ml-2 mb-4">__________________</p>
-					</div>
-					<p className="font-bold text-4xl">AUDIO-VISUAL ROOM</p>
+					</motion.div>
+					<motion.p
+						ref={ref}
+						initial="hidden"
+						animate={controls}
+						variants={{
+							visible: { x: 0 },
+							hidden: { x: 50 },
+						}}
+						transition={{ duration: 1 }}
+						className="font-bold text-4xl">
+						AUDIO-VISUAL ROOM
+					</motion.p>
 
 					<div className="flex flex-row flex-wrap lg:flex-nowrap mt-24 justify-between">
-						<div className="flex flex-col w-full max-w-full lg:max-w-[320px] mr-0 lg:mr-8">
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { scale: 1 },
+								hidden: { scale: 0 },
+							}}
+							transition={{ duration: 1 }}
+							className="flex flex-col w-full max-w-full lg:max-w-[320px] mr-0 lg:mr-8">
 							<div>
 								<div className="border-2 rounded-t-md bg-gray-100">
 									<p className="my-2 mx-2">Space Booking</p>
@@ -68,9 +105,18 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</motion.div>
 
-						<div className="grow h-full">
+						<motion.div
+							ref={ref}
+							initial="hidden"
+							animate={controls}
+							variants={{
+								visible: { scaleX: 1 },
+								hidden: { scaleX: 0 },
+							}}
+							transition={{ duration: 1 }}
+							className="grow h-full">
 							<div className="border-2 rounded-t-md bg-gray-100">
 								<p className="my-2 mx-2">Guidelines and Policies</p>
 							</div>
@@ -99,7 +145,7 @@
 									<li>The JHCSC AVR is a smoke free area.</li>
 								</ul>
 							</div>
-						</div>
+						</motion.div>
 					</div>
 				</div>
 			</div>
