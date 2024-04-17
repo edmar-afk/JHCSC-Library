@@ -1,29 +1,5 @@
-import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import axios from "axios";
-import { useState } from "react";
-import API_URL from "../../../assets/data/api";
+import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 function Contact() {
-	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		message: "",
-	});
-
-	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	};
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			await axios.post(`${API_URL}send-email/`, formData); // Pass formData.email as the recipient_email
-			alert("Email sent successfully!");
-		} catch (error) {
-			console.error("Error sending email:", error);
-			alert("Failed to send email");
-		}
-	};
 	return (
 		<>
 			<div className="bg-white py-24 w-full">
@@ -81,40 +57,33 @@ function Contact() {
 						<div className="flex flex-col flex-1 mt-4 sm:mt-0">
 							<div>
 								<form
-									onSubmit={handleSubmit}
+									action="#"
 									className="ml-0 md:ml-24 items-center">
 									<div className="flex flex-row mb-6">
 										<input
 											type="text"
-											name="name"
-											value={formData.name}
-											onChange={handleChange}
 											className="border-1 border-gray-200 p-2 mr-2 w-full rounded-lg"
 											placeholder="Your Name"
 										/>
 
 										<input
-											type="email"
-											name="email"
-											value={formData.email}
-											onChange={handleChange}
+											type="text"
 											className="border-1 border-gray-200 p-2 ml-2 w-full rounded-lg"
 											placeholder="Your Email"
 										/>
 									</div>
+									<input
+										type="text"
+										className="border-1 border-gray-200 p-2 w-full rounded-lg mb-6"
+										placeholder="Your Name"
+									/>
 
 									<textarea
-										name="message"
-										value={formData.message}
-										onChange={handleChange}
 										className="border-1 border-gray-200 p-2 w-full h-32 rounded-lg mb-6"
 										placeholder="Message"
 									/>
-
 									<div className="flex justify-center">
-										<button
-											type="submit"
-											className="p-3 px-6 bg-yellow-300 rounded-lg hover:bg-yellow-500 hover:scale-105 duration-300">
+										<button className="p-3 px-6 bg-yellow-300 rounded-lg hover:bg-yellow-500 hover:scale-105 duration-300">
 											Send Message
 										</button>
 									</div>
