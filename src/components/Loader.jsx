@@ -5,7 +5,7 @@ import loader from "../assets/img/loader.gif";function Loader() {
 				<img
 					src={loader}
 					alt=""
-					className="mx-auto mt-40 mb-96 w-96"
+					className="mx-auto mt-52 mb-96 w-72"
 				/>
 			</div>
 		</>
