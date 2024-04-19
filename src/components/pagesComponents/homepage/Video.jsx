@@ -1,4 +1,8 @@
-import { motion, useAnimation } from "framer-motion";import { useInView } from "react-intersection-observer";import { useEffect } from "react";function Video() {	const controls = useAnimation();
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+function Video() {
+	const controls = useAnimation();
 	const [ref, inView] = useInView({ reset: true });
 
 	useEffect(() => {
@@ -19,7 +23,7 @@ import { motion, useAnimation } from "framer-motion";import { useInView } from "
 							visible: { opacity: 1, scale: 1 },
 							hidden: { opacity: 0, scale: 0 },
 						}}
-						transition={{ duration: 2 }}
+						transition={{ duration: 1 }}
 						className="text-4xl font-bold">
 						COLLEGE LIBRARY
 					</motion.p>

@@ -15,6 +15,7 @@ import Policies from "./routes/Services/Policies.jsx";
 import Databases from "./routes/resouces/Databases.jsx";
 import Room from "./routes/learningSpaces/Room.jsx";
 import HomepageLibrary from "./routes/HomepageLibrary.jsx";
+import HomepageContact from './routes/HomepageContact.jsx'
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/contact",
-				element: <Homepage />,
+				element: <HomepageContact />,
 			},
 			{
 				path: "/visionmission",

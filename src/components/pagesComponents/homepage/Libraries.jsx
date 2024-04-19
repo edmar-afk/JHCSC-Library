@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";import axios from "axios";
+import { useState, useEffect } from "react";import axios from "axios";
 import { Carousel } from "flowbite-react";
 import logo from "../../../assets/img/logo.png";
 import API_URL from "../../../assets/data/api";
