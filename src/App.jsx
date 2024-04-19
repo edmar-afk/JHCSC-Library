@@ -12,7 +12,7 @@ function App() {
 	useEffect(() => {
 		const recordVisit = async () => {
 			try {
-				// Send a POST request to your Django backend API
+				
 				await axios.post(`${API_URL}api/visits/`);
 				console.log("Visit recorded successfully");
 			} catch (error) {
@@ -21,7 +21,7 @@ function App() {
 		};
 
 		recordVisit();
-	}, []); // Empty dependency array ensures that the effect runs only once when the component mounts
+	}, []); 
 	return (
 		<>
 			<>
