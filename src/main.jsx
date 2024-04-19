@@ -14,7 +14,7 @@ import VisitingUsers from "./routes/Services/VisitingUsers.jsx";
 import Policies from "./routes/Services/Policies.jsx";
 import Databases from "./routes/resouces/Databases.jsx";
 import Room from "./routes/learningSpaces/Room.jsx";
-
+import HomepageLibrary from "./routes/HomepageLibrary.jsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <Homepage />,
+			},
+			{
+				path: "/libraries",
+				element: <HomepageLibrary />,
 			},
 			{
 				path: "/contact",

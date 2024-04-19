@@ -25,6 +25,7 @@ function App() {
 	return (
 		<>
 			<>
+				
 				<Navbar />
 				<Banner />
 				<div className="w-full">

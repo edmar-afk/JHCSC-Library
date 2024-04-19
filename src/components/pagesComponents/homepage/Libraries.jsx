@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";import API_URL from "../../../assets/data/api";
+import { useState, useEffect, useRef } from "react";import axios from "axios";
+import { Carousel } from "flowbite-react";
+import logo from "../../../assets/img/logo.png";
+import API_URL from "../../../assets/data/api";
 import mainLib from "../../../assets/img/libraries/mainLib.png";
 import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";
 import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";
@@ -45,7 +48,7 @@ function Libraries() {
 		};
 
 		fetchLibrarians();
-	}, [ controls, inView]);
+	}, [controls, inView]);
 
 	const campuses = [
 		{ id: 1, campusName: "Main", img: mainLib },
@@ -55,6 +58,7 @@ function Libraries() {
 	];
 	return (
 		<>
+			
 			<div className="bg-white py-4 lg:py-24 w-full">
 				<motion.div
 					ref={ref}

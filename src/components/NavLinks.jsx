@@ -1,4 +1,7 @@
-import { Dropdown } from "flowbite-react";import { Link, useLocation } from "react-router-dom";import { useEffect, useRef } from "react";function NavLinks() {
+import { Dropdown } from "flowbite-react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+function NavLinks() {
 	const contentRef = useRef(null);
 	const location = useLocation();
 
@@ -123,11 +126,11 @@ import { Dropdown } from "flowbite-react";import { Link, useLocation } from "rea
 					</Dropdown.Item>
 				</Dropdown>
 			</div>
-			<a
-				href="#"
+			<Link
+				to={'/libraries'}
 				className="text-gray-300 hover:bg-yellow-400 duration-300 hover:text-white rounded-md px-3 py-2 text-md font-medium">
 				Satellite Libraries
-			</a>
+			</Link>
 		</>
 	);
 }
