@@ -1,6 +1,4 @@
-import { motion, useAnimation } from "framer-motion";import { useInView } from "react-intersection-observer";import { useEffect } from "react";
-function Video() {
-	const controls = useAnimation();
+import { motion, useAnimation } from "framer-motion";import { useInView } from "react-intersection-observer";import { useEffect } from "react";function Video() {	const controls = useAnimation();
 	const [ref, inView] = useInView({ reset: true });
 
 	useEffect(() => {
@@ -18,8 +16,8 @@ function Video() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { opacity: 1, x: 0 },
-							hidden: { opacity: 0, x: 60 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 2 }}
 						className="text-4xl font-bold">
@@ -31,8 +29,8 @@ function Video() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { opacity: 1, y: 0 },
-							hidden: { opacity: 0, y: 50 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className="mt-4 h-[600px]"

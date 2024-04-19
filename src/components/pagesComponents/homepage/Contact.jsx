@@ -1,7 +1,4 @@
-import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { motion, useAnimation } from "framer-motion";
+import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import { faFacebook } from "@fortawesome/free-brands-svg-icons";import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 function Contact() {
@@ -23,8 +20,8 @@ function Contact() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { opacity: 1, x: 0 },
-							hidden: { opacity: 0, x: 50 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className="flex items-center">
@@ -36,8 +33,8 @@ function Contact() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { opacity: 1, y: 0 },
-							hidden: { opacity: 0, y: -50 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className="font-bold text-4xl">
@@ -50,8 +47,8 @@ function Contact() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, y: 0 },
-								hidden: { opacity: 0, y: 50 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 1 }}
 							className="flex flex-col mt-4 sm:mt-12 flex-wrap w-[30rem]">

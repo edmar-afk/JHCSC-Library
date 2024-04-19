@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";
-import logo from "../../../assets/img/logo.png";
-import API_URL from "../../../assets/data/api";
+import { useState, useEffect } from "react";import axios from "axios";import { Carousel } from "flowbite-react";import logo from "../../../assets/img/logo.png";import API_URL from "../../../assets/data/api";
 import mainLib from "../../../assets/img/libraries/mainLib.png";
 import dumingagLib from "../../../assets/img/libraries/dumingagLib.png";
 import pagadianLib from "../../../assets/img/libraries/pagadianLib.png";
@@ -63,8 +61,8 @@ function Libraries() {
 					initial="hidden"
 					animate={controls}
 					variants={{
-						visible: { x: 0 },
-						hidden: { x: -50 },
+						visible: { opacity: 1, scale: 1 },
+						hidden: { opacity: 0, scale: 0 },
 					}}
 					transition={{ duration: 1 }}
 					className="mx-4 lg:mx-32">
@@ -80,8 +78,8 @@ function Libraries() {
 					initial="hidden"
 					animate={controls}
 					variants={{
-						visible: { x: 0 },
-						hidden: { x: 50 },
+						visible: { opacity: 1, scale: 1 },
+						hidden: { opacity: 0, scale: 0 },
 					}}
 					transition={{ duration: 1 }}
 					className="flex flex-row flex-wrap justify-evenly mt-8">
@@ -127,7 +125,7 @@ function Libraries() {
 				</motion.div>
 			</div>
 			<div className="bg-black/50 lg:p-4 text-white">
-				<div className="h-screen sm:h-[640px] md:h-[710px] xl:h-[600px] 2xl:h-[600px]">
+				<div className="h-[800px] sm:h-[640px] md:h-[710px] xl:h-[700px] 2xl:h-[700px]">
 					<Carousel>
 						<div className="flex flex-col justify-center items-center">
 							<p className="text-center text-yellow-400 mb-24 font-semibold text-xl sm:text-4xl mt-4">Main Library</p>
@@ -146,7 +144,7 @@ function Libraries() {
 										<p>{position}</p>
 									</div>
 								))}
-							<div className="flex flex-col md:flex-row justify-center mt-8 flex-wrap">
+							<div className="flex flex-row justify-center mt-8 flex-wrap">
 								{mainCampus
 									.filter((list) => !list.is_librarian_head)
 									.map(({ id, name, position, user_image }) => (
@@ -155,7 +153,7 @@ function Libraries() {
 											key={id}>
 											<img
 												src={user_image}
-												className="w-4 h-24 sm:w-24 rounded-full"
+												className="w-12 sm:w-24 rounded-full"
 												alt=""
 											/>
 											<p className="text-sm sm:text-lg font-bold">{name}</p>
@@ -191,7 +189,7 @@ function Libraries() {
 											key={id}>
 											<img
 												src={user_image}
-												className="w-4 h-24 sm:w-24 rounded-full"
+												className="w-12 sm:w-24 rounded-full"
 												alt=""
 											/>
 											<p className="text-sm sm:text-lg font-bold">{name}</p>

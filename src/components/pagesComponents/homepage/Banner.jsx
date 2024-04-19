@@ -31,8 +31,8 @@ function Banner() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, y: 0 },
-								hidden: { opacity: 0, y: 20 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 0.5 }}
 							className="bg-transparent relative hover:cursor-pointer p-4 md:p-8 border-[1px] w-full md:w-[200px] my-2
@@ -57,8 +57,8 @@ function Banner() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, y: 0 },
-								hidden: { opacity: 0, y: 20 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 0.5 }}
 							href="https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-main.pl"
@@ -77,8 +77,8 @@ function Banner() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, y: 0 },
-								hidden: { opacity: 0, y: 20 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 0.5 }}
 							href="https://subanencc.librarika.com/"
@@ -98,8 +98,8 @@ function Banner() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, y: 0 },
-								hidden: { opacity: 0, y: 20 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 0.5 }}
 							href="https://jhmainliberepository.pythonanywhere.com/login/"

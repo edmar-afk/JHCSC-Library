@@ -1,10 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from "../../../assets/img/logo.png";
-import { faArrowDownShortWide, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { dates } from "../../../assets/data/links";
-import { useState, useEffect } from "react";
-import API_URL from "../../../assets/data/api";
-import { motion, useAnimation } from "framer-motion";
+/* eslint-disable react/no-unescaped-entities */ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import logo from "../../../assets/img/logo.png";import { faArrowDownShortWide, faSpinner } from "@fortawesome/free-solid-svg-icons";import { dates } from "../../../assets/data/links";import { useState, useEffect } from "react";import API_URL from "../../../assets/data/api";import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 function Visitors() {
@@ -75,8 +69,8 @@ function Visitors() {
 					initial="hidden"
 					animate={controls}
 					variants={{
-						visible: { x: 0 },
-						hidden: { x: -50 },
+						visible: { opacity: 1, scale: 1 },
+						hidden: { opacity: 0, scale: 0 },
 					}}
 					transition={{ duration: 1 }}
 					className="flex items-center">
@@ -88,8 +82,8 @@ function Visitors() {
 					initial="hidden"
 					animate={controls}
 					variants={{
-						visible: { x: 0 },
-						hidden: { x: 50 },
+						visible: { opacity: 1, scale: 1 },
+						hidden: { opacity: 0, scale: 0 },
 					}}
 					transition={{ duration: 1 }}
 					className="text-4xl font-bold mt-2">
@@ -102,8 +96,8 @@ function Visitors() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { y: 0 },
-							hidden: { y: -20 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className="flex items-center p-4 bg-white relative rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
@@ -129,8 +123,8 @@ function Visitors() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { y: 0 },
-							hidden: { y: -30 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">
@@ -156,8 +150,8 @@ function Visitors() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { y: 0 },
-							hidden: { y: -40 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className={`flex items-center p-4 bg-white rounded relative w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] ${
@@ -217,8 +211,8 @@ function Visitors() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { y: 0 },
-							hidden: { y: -50 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
 						transition={{ duration: 1 }}
 						className="flex items-center p-4 bg-white rounded w-full max-w-[320px] lg:max-w-[290px] 2xl:max-w-[320px] mb-4">

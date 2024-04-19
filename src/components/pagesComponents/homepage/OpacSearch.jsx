@@ -1,9 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";import { useState, useEffect } from "react";
-import axios from "axios";
-import API_URL from "../../../assets/data/api";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-function OpacSearch() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";import libraryBuilding from "../../../assets/img/libraryBuilding.jpg";import { faCalendarAlt, faClock, faCommentDots, faUser } from "@fortawesome/free-solid-svg-icons";import { useState, useEffect } from "react";import axios from "axios";import API_URL from "../../../assets/data/api";import { motion, useAnimation } from "framer-motion";import { useInView } from "react-intersection-observer";function OpacSearch() {
 	const controls = useAnimation();
 	const [ref, inView] = useInView({ reset: true });
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -62,10 +57,10 @@ function OpacSearch() {
 						initial="hidden"
 						animate={controls}
 						variants={{
-							visible: { opacity: 1, x: 0 },
-							hidden: { opacity: 0, x: -50 },
+							visible: { opacity: 1, scale: 1 },
+							hidden: { opacity: 0, scale: 0 },
 						}}
-						transition={{ duration: 2 }}
+						transition={{ duration: 1 }}
 						className="text-center md:text-left text-sm md:text-xl text-gray-500">
 						OPAC Search
 					</motion.p>
@@ -76,10 +71,10 @@ function OpacSearch() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, y: 0 },
-								hidden: { opacity: 0, y: 50 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
-							transition={{ duration: 2 }}
+							transition={{ duration: 1 }}
 							className=" w-full">
 							<label
 								htmlFor="voice-search"
@@ -103,10 +98,10 @@ function OpacSearch() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, x: 0 },
-								hidden: { opacity: 0, x: 30 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
-							transition={{ duration: 2 }}
+							transition={{ duration: 1 }}
 							onClick={searchValue ? null : (e) => e.preventDefault()}
 							target="_blank"
 							href={`https://opac.jhcsc.edu.ph/cgi-bin/koha/opac-search.pl?idx=&q=${searchValue}&branch_group_limit=&weight_search=1`}
@@ -145,8 +140,8 @@ function OpacSearch() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, x: 0 },
-								hidden: { opacity: 0, x: -50 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 1 }}
 							src={libraryBuilding}
@@ -158,8 +153,8 @@ function OpacSearch() {
 							initial="hidden"
 							animate={controls}
 							variants={{
-								visible: { opacity: 1, x: 0 },
-								hidden: { opacity: 0, x: 50 },
+								visible: { opacity: 1, scale: 1 },
+								hidden: { opacity: 0, scale: 0 },
 							}}
 							transition={{ duration: 1 }}
 							className="flex flex-row md:flex-col ml-0 md:ml-8 flex-wrap justify-evenly">
